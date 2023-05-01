@@ -2,6 +2,11 @@ import streamlit as st
 
 scr = "https://uploads.scratch.mit.edu/get_image/user/111367303_192x192.png"
 
+def convert(unit_dict, from_select, to_select, input):
+    from_rate = unit_dict[from_select]
+    to_rate = unit_dict[to_select]
+    return from_rate * input / to_rate
+
 def convert_length(from_select, to_select, input):
     length_dict = {
         "Meter" : 1,
@@ -26,15 +31,10 @@ def convert_weight(from_select, to_select, input):
     }
     return convert(weight_dict, from_select, to_select, input)
 
-def convert(unit_dict, from_select, to_select, input):
-    from_rate = unit_dict[from_select]
-    to_rate = unit_dict[to_select]
-    return from_rate * input / to_rate
-
 
 Unit = st.sidebar.selectbox("Opitions: ", ("Length", "Weight", "Speed", "Credits and Notes"))
 if Unit == "Length":
-    st.title("Length Unit Converter $$\sqrt{2\pi}(x^2 + y^2)$$")
+    st.title("Length Unit Converter")
     c1, c2, c3 = st.columns(3)
     with c1:
         from_select = st.selectbox(label_visibility="collapsed", options=("Meter", "Centimeter", "Feet", "Inches", "Millimeter", "Micrometer", "Mile"), label="")
@@ -48,7 +48,7 @@ if Unit == "Length":
 
 elif Unit == "Weight":
     c1, c2, c3 = st.columns(3)
-    st.title("Weight Unit Converter $$\sqrt{2\pi}(x^2 + y^2)$$")
+    st.title("Weight Unit Converter")
     with c1:
         from_input = st.number_input("Value:")
         from_select = st.selectbox(label_visibility="collapsed", options=("Kilogram", "Pound", "Ounce", "Milligram", "Microgram", "Gram", "Ton"), label="")
