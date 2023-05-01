@@ -7,18 +7,6 @@ def convert(unit_dict, from_select, to_select, input):
     to_rate = unit_dict[to_select]
     return from_rate * input / to_rate
 
-def convert_length(from_select, to_select, input):
-    length_dict = {
-        "Meter" : 1,
-        "Centimeter" : 0.01,
-        "Feet" : 0.3048,
-        "Inches" : 0.0254,
-        "Millimeter" : 0.001,
-        "Micrometer" : 0.000001,
-        "Mile" : 1609.344,
-    }
-    return convert(length_dict, from_select, to_select, input)  
-
 def convert_weight(from_select, to_select, input):
     weight_dict = {
         "Kilogram" : 1,
@@ -35,16 +23,44 @@ def convert_weight(from_select, to_select, input):
 Unit = st.sidebar.selectbox("Opitions: ", ("Length", "Weight", "Speed", "Credits and Notes"))
 if Unit == "Length":
     st.title("Length Unit Converter")
+    length_dict = {
+        "Meter" : 1,
+        "Centimeter" : 0.01,
+        "Feet" : 0.3048,
+        "Inches" : 0.0254,
+        "Millimeter" : 0.001,
+        "Micrometer" : 0.000001,
+        "Mile" : 1609.344,
+    }
     c1, c2, c3 = st.columns(3)
     with c1:
-        from_select = st.selectbox(label_visibility="collapsed", options=("Meter", "Centimeter", "Feet", "Inches", "Millimeter", "Micrometer", "Mile"), label="from_select")
-        from_input = st.number_input("from_input", label_visibility="collapsed")
+        from_select = st.selectbox(
+            label="from_select",
+            label_visibility="collapsed",
+            options=length_dict.keys(),
+        )
+        from_input = st.number_input(
+            "from_input", 
+            label_visibility="collapsed",
+        )
     with c2:
-        st.markdown("<h1 style='font-size: 80px; text-align: center;'>=</h1>", unsafe_allow_html=True)
+        st.markdown(
+            "<h1 style='font-size: 80px; text-align: center;'>=</h1>", 
+            unsafe_allow_html=True,
+        )
     with c3:    
-        to_select = st.selectbox("to_select", ("Meter", "Centimeter", "Feet", "Inches", "Millimeter", "Micrometer", "Mile"), label_visibility="collapsed")
-        result = convert_length(from_select, to_select, from_input)
-        to_input = st.number_input("to_input", label_visibility="collapsed", value=result)
+        to_select = st.selectbox(
+            label="to_select",
+            label_visibility="collapsed", 
+            options=length_dict.keys(),
+        )
+        result = convert(length_dict, from_select, to_select, from_input)  
+        # result = convert_length(from_select, to_select, from_input)
+        to_input = st.number_input(
+            "to_input", 
+            label_visibility="collapsed", 
+            value=result,
+        )
 
 elif Unit == "Weight":
     c1, c2, c3 = st.columns(3)
