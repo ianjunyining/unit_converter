@@ -37,14 +37,14 @@ if Unit == "Length":
     st.title("Length Unit Converter")
     c1, c2, c3 = st.columns(3)
     with c1:
-        from_select = st.selectbox(label_visibility="collapsed", options=("Meter", "Centimeter", "Feet", "Inches", "Millimeter", "Micrometer", "Mile"), label="")
-        from_input = st.number_input("", label_visibility="collapsed")
+        from_select = st.selectbox(label_visibility="collapsed", options=("Meter", "Centimeter", "Feet", "Inches", "Millimeter", "Micrometer", "Mile"), label="from_select")
+        from_input = st.number_input("from_input", label_visibility="collapsed")
     with c2:
         st.markdown("<h1 style='font-size: 80px; text-align: center;'>=</h1>", unsafe_allow_html=True)
     with c3:    
-        to_select = st.selectbox(" ", ("Meter", "Centimeter", "Feet", "Inches", "Millimeter", "Micrometer", "Mile"), label_visibility="collapsed")
+        to_select = st.selectbox("to_select", ("Meter", "Centimeter", "Feet", "Inches", "Millimeter", "Micrometer", "Mile"), label_visibility="collapsed")
         result = convert_length(from_select, to_select, from_input)
-        input = st.number_input("  ", label_visibility="collapsed", value=result)
+        to_input = st.number_input("to_input", label_visibility="collapsed", value=result)
 
 elif Unit == "Weight":
     c1, c2, c3 = st.columns(3)
