@@ -185,28 +185,23 @@ elif Unit == "BMI":
             bmi = kilograms / (meter ** 2)
         except:
             bmi = 0
-
-        if bmi < 19.9:
+        if bmi <= 0:
+            category = "None"
+        elif bmi < 19.9:
             category = "underweight"
-        if bmi > 24.9:
+        elif bmi < 24.9:
             category = "normal"
-        if bmi > 29.9:
+        elif bmi < 29.9:
             category = "overweight"
-        if bmi > 34.9:
+        elif bmi < 34.9:
             category = "Obesity I"
-        if bmi > 39.9:
+        elif bmi < 39.9:
             category = "Obesity II"
-        if bmi > 44.9:
-            category = "Obesity Max"
         else:
-            if bmi > 0:
-                category = "underweight"
-            else:
-                category = "None" 
-    if True:
-        st.text(f"Your BMI is {bmi} and is considered as {category}")
+            category = "Obesity Max"
+
+    st.text(f"Your BMI is {bmi} and is considered as {category}")
     
-        pass
 elif Unit == "Credits and Notes":
     st.title("Unit Converter - Credits")
     st.markdown(
