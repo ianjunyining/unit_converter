@@ -20,7 +20,7 @@ def convert_weight(from_select, to_select, input):
     return convert(weight_dict, from_select, to_select, input)
 
 
-Unit = st.sidebar.selectbox("Opitions: ", ("Length", "Weight", "Time", "BMI", "Credits and Notes"))
+Unit = st.sidebar.selectbox("Opitions: ", ("Length", "Weight", "Time", "BMI", "Credits and Notes", "More projects"))
 if Unit == "Length":
     st.title("Length Unit Converter")
     length_dict = {
@@ -200,7 +200,7 @@ elif Unit == "BMI":
         else:
             category = "Obesity Max"
 
-    st.text(f"Your BMI is {bmi} and is considered as {category}")
+    st.text(f"Your BMI is {round(bmi, 2)} and is considered as {category}")
     
 elif Unit == "Credits and Notes":
     st.title("Unit Converter - Credits")
